@@ -1,0 +1,21 @@
+<div *ngIf="loader$ | async">
+    <div id="cover-spin">
+      <h3 class="msg">Please Wait Loading...</h3>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mb-3">
+      <button
+        (click)="login()"
+        *ngIf="!(user$ | async) && !(loginDisplay | async)"
+        class="btn btn-block btn-secondary btn-register"
+      >
+        Log In
+      </button>
+    </div>
+  </div>
+  
+  <div class="container">
+    <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+    <router-outlet *ngIf="!isIframe"></router-outlet>
+  </div>
